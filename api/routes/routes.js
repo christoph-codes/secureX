@@ -23,22 +23,22 @@ router.post('/', (req, res) => {
 
 router.post('/ssnverify', (req, res) => {
 	try {
-        console.log(process.env.TWILIO_VERIFY_SERVICE_SID);
-        let client = new twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
+		console.log(process.env.TWILIO_VERIFY_SERVICE_SID);
+		let client = new twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 
 		client.verify
-            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
-			.verifications.create({ 
-                to: req.body.phone_number, 
-                channel: 'sms',
-            })
+			.services(process.env.TWILIO_VERIFY_SERVICE_SID)
+			.verifications.create({
+				to: req.body.phone_number,
+				channel: req.body.verification_method,
+			})
 			.then((verification) => {
                 console.log(verification.status);
 				res.status(200).send(verification);
             })
-            .catch(err => {
-                console.log(err);
-            });
+			.catch((err) => {
+				console.log(err);
+			});
 	} catch (err) {
 		res.status(400).send({
 			error: '',
@@ -46,6 +46,32 @@ router.post('/ssnverify', (req, res) => {
 	}
 });
 
+router.post('/verifycode', (req, res) => {
+	try {
+		console.log(process.env.TWILIO_VERIFY_SERVICE_SID);
+		let client = new twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
+		console.log(req.body.phone_number);
+		console.log(req.body.enteredCode);
+
+		client.verify
+			.services(process.env.TWILIO_VERIFY_SERVICE_SID)
+			.verificationChecks.create({
+				to: req.body.phone_number,
+				code: req.body.enteredCode,
+			})
+			.then(verification_check => {
+				console.log(verification_check.status);
+				res.status(200).send(verification_check.status);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	} catch (err) {
+		res.status(400).send({
+			error: '',
+		});
+	}
+});
 
 router.get('/healthcheck', (req, res) => {
 	try {

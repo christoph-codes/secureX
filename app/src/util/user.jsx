@@ -1,6 +1,6 @@
 export const users = [
     {
-        ssn: '123456789',
+        ssn: '6789',
         first_name: 'Secure',
         last_name: 'X',
         phone: '7253739090',
@@ -12,7 +12,7 @@ export const users = [
         password: '',
     },
     {
-        ssn: '234567890',
+        ssn: '5555',
         first_name: 'Christopher',
         last_name: 'Jones',
         phone: '7023360322',

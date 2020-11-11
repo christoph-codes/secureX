@@ -1,0 +1,11 @@
+@import '../../assets/styles/variables';
+button.verified.btn.btn-secondary {
+    background: $primarycta;
+    border: none;
+    cursor: not-allowed;
+}
+input.verified.form-control {
+    border-color: $primarycta;
+    color: $primarycta;
+    cursor: not-allowed;
+}
