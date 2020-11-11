@@ -11,7 +11,7 @@ export default function Home(props) {
 					<img src={slogo} alt='SecureX Project by Credit One Bank' />
 				</div>
 				<div className='buttons'>
-					<Button variant='primary' href='/flow/card-activation'>
+					<Button variant='primary' size={'lg'} href='/flow/card-activation'>
 						Activate Card
 					</Button>
 					<Button variant='secondary' size={'lg'} href='/flow/create-account'>

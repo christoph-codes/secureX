@@ -1,3 +1,4 @@
+@import "~bootstrap/scss/bootstrap";
 @import './assets/styles/variables';
 body {
   margin: 0;
@@ -14,11 +15,9 @@ code {
 }
 
 a.btn {
-  padding: 15px 50px;
     margin: 0 20px;
-    border-radius: 20px;
-    color: white;
-    text-decoration: none;
+    border: none;
+    border-radius: none;
   &.btn-primary {
     background: $primarycta;
   }
