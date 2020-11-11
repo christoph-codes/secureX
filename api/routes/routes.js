@@ -2,7 +2,7 @@ const express =  require('express');
 const twilio = require('twilio');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
     try{
         let client = new twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
         client.messages.create({
