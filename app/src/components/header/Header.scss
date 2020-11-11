@@ -1,0 +1,12 @@
+@import '../../assets/styles/variables';
+.Header {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background: $primary;
+    img {
+        margin-bottom: 50px;
+        max-width: 150px;
+    }
+}

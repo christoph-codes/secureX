@@ -1,0 +1,13 @@
+@import '../../assets/styles/variables';
+.Home {
+    background: $primary;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    .buttons {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+}
