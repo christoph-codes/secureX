@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="616.518" height="193" viewBox="0 0 616.518 193">
+  <g id="Group_34" data-name="Group 34" transform="translate(-3104.482 -227)">
+    <text id="SecureX" transform="translate(3475 366)" fill="#fff" font-size="136" font-family="SourceSansPro-Bold, Source Sans Pro" font-weight="700"><tspan x="-245.344" y="0">SecureX</tspan></text>
+    <text id="a_Credit_One_Company" data-name="a Credit One Company" transform="translate(3598 399)" fill="#1796d4" font-size="26" font-family="SourceSansPro-Regular, Source Sans Pro"><tspan x="-121.667" y="0">a Credit One Company</tspan></text>
+    <g id="Group_12" data-name="Group 12">
+      <path id="Icon_material-lock-outline" data-name="Icon material-lock-outline" d="M90.906,43.953H84.842V31.824a30.324,30.324,0,0,0-60.647,0V43.953H18.129A12.165,12.165,0,0,0,6,56.083V116.73a12.165,12.165,0,0,0,12.129,12.129H90.906a12.165,12.165,0,0,0,12.129-12.129V56.083A12.165,12.165,0,0,0,90.906,43.953ZM35.717,31.824a18.8,18.8,0,1,1,37.6,0V43.953h-37.6ZM90.906,116.73H18.129V56.083H90.906Z" transform="translate(3098.482 243.57)" fill="#fff"/>
+      <circle id="Ellipse_1" data-name="Ellipse 1" cx="12" cy="12" r="12" transform="translate(3141 318)" fill="#1796d4"/>
+    </g>
+  </g>
+</svg>
