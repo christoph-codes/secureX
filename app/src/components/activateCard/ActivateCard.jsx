@@ -38,16 +38,16 @@ export default function ActivateCard(props) {
 					(user) => user.fields.lastssn === ssn,
 				);
 				// console.log(dbuser)
-				verifiedUser = dbuser.fields;
+				verifiedUser = dbuser;
 				verificationStatus = true;
 
 				if (verifiedUser) {
-					if (verifiedUser.phone && verificationStatus) {
+					if (verifiedUser.fields.phone && verificationStatus) {
 						// Send Twilio the phone number to verify user
 						local
 							.post(`/ssnverify`, {
-								phone_number: `${verifiedUser.phone}`,
-								verification_method: `${verifiedUser.preferred_verification}`,
+								phone_number: `${verifiedUser.fields.phone}`,
+								verification_method: `${verifiedUser.fields.preferred_verification}`,
 							})
 							.then((response) => {
 								setUser(verifiedUser);
@@ -73,16 +73,16 @@ export default function ActivateCard(props) {
 		// Send Twilio the phone number to verify user
 		local
 			.post(`/verifycode`, {
-				phone_number: `${user.phone}`,
+				phone_number: `${user.fields.phone}`,
 				enteredCode: `${verifyCode}`,
 			})
 			.then((response) => {
-                console.log(response.data);
-                if(response.data === 'approved') {
-                    setIsCodeVerified(true);
-                } else {
-                    setIsCodeVerified(false);
-                }
+				console.log(response.data);
+				if (response.data === 'approved') {
+					setIsCodeVerified(true);
+				} else {
+					setIsCodeVerified(false);
+				}
 			});
 	};
 
@@ -93,8 +93,13 @@ export default function ActivateCard(props) {
 	const activate = (e) => {
 		e.preventDefault();
         console.log('...Activating');
-        if(isUserVerified && isCodeVerified && ccnumber === user.cc_number && cvv === user.cvv) {
-            history.push('/flow/create-account', user);
+        if(isUserVerified && isCodeVerified && ccnumber === user.fields.cc_number && cvv === user.fields.cvv) {
+            const savedUser = {
+                ...user,
+                isVerified: true,
+                isCodeVerified: true,
+            }
+            history.push('/flow/create-account', savedUser);
         } else {
             setFeedback('Your card number and CVV do not match our records on file');
         }

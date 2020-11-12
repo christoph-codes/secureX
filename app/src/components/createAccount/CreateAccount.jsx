@@ -10,7 +10,7 @@ import './CreateAccount.scss';
 export default function CreateAccount({ location }) {
 	const [user, setUser] = useState(() => {
 		if (location.state) {
-			return location.state;
+			return location.state.fields;
 		} else {
 			return {};
 		}
@@ -27,7 +27,13 @@ export default function CreateAccount({ location }) {
 		}
     });
 	const [verifyCode, setVerifyCode] = useState('');
-	const [isCodeVerified, setIsCodeVerified] = useState(false);
+	const [isCodeVerified, setIsCodeVerified] = useState(() => {
+        if (location.state) {
+			return true;
+		} else {
+			return false;
+		}
+    });
     const [feedback, setFeedback] = useState('');
 	const history = useHistory();
 
@@ -131,7 +137,7 @@ export default function CreateAccount({ location }) {
 		<div className='CreateAccount page'>
 			<FormContainer>
 				{isCodeVerified ? (
-					<h1>Thanks {user.fields.firstname}, for activating your card!</h1>
+					<h1>Thanks {user.firstname}, for activating your card!</h1>
 				) : (
 					<h1>Thank you for activating your card!</h1>
 				)}
