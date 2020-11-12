@@ -1,6 +1,7 @@
 const express = require('express');
 const twilio = require('twilio');
 const router = express.Router();
+const Airtable = require('airtable');
 
 router.post('/', (req, res) => {
 	try {
@@ -18,6 +19,25 @@ router.post('/', (req, res) => {
 		res.status(400).send({
 			error: err,
 		});
+	}
+});
+
+router.post('/writedb', (req, res) => {
+	try {
+		console.log(req.body.id);
+		const base = new Airtable({apiKey: 'keyX79659k8TsxfTb'}).base('appHh4nd4KMCZ4NLL');
+		base('twilio').update([
+			{
+			  "id": req.body.id,
+			  "fields": {
+				username: req.body.username,
+				password: req.body.password
+			  }
+			}
+		])
+		res.send({ status: 'Everything is healthy' });
+	} catch (err) {
+		res.send({ status: 'Everything is NOT healthy' });
 	}
 });
 
