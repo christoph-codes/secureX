@@ -1,10 +1,15 @@
 @import '../../assets/styles/variables';
 .Home {
-    background: $primary;
+    background: $dark;
     height: 100vh;
     display: grid;
     align-items: center;
     justify-content: center;
+    img {
+        max-width: 50%;
+        margin: 0 auto 50px;
+        display: block;
+    }
     .buttons {
         margin-bottom: 20px;
         display: flex;
