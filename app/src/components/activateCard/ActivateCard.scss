@@ -9,3 +9,9 @@ input.verified.form-control {
     color: $primarycta;
     cursor: not-allowed;
 }
+.form-group {
+    &.disabled {
+        opacity: 0.2;
+        cursor: not-allowed;
+    }
+}

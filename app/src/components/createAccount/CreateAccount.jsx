@@ -130,8 +130,9 @@ export default function CreateAccount({ location }) {
     
 
 	useEffect(() => {
-		console.log(user);
-	}, [user]);
+		console.log(`User verified: ${isUserVerified}`);
+		console.log(`Code verified: ${isCodeVerified}`);
+	}, [isUserVerified, isCodeVerified]);
 
 	return (
 		<div className='CreateAccount page'>
@@ -204,7 +205,7 @@ export default function CreateAccount({ location }) {
 						</>
 					) : <p className="verify">Your account has been verified!</p>}
 
-					<Form.Group>
+					<Form.Group className={!isUserVerified || !isCodeVerified ? 'disabled' : null}>
 						<Form.Label>Username</Form.Label>
 						<Form.Control
 							onChange={(e) => setUsername(e.target.value.replace(/[^\w\s]/gi, '').toLowerCase())}
@@ -212,7 +213,7 @@ export default function CreateAccount({ location }) {
                             maxLength={16}
 						/>
 					</Form.Group>
-					<Form.Group>
+					<Form.Group className={!isUserVerified || !isCodeVerified ? 'disabled' : null}>
 						<Form.Label>Password</Form.Label>
 						<Form.Control
 							onChange={(e) => setPassword(e.target.value)}
@@ -221,7 +222,7 @@ export default function CreateAccount({ location }) {
                             type="password"
 						/>
 					</Form.Group>
-					<Form.Group>
+					<Form.Group className={!isUserVerified || !isCodeVerified ? 'disabled' : null}>
 						<Form.Label>Confirm Password</Form.Label>
 						<Form.Control
 							onChange={(e) => setConfirmPassword(e.target.value)}
@@ -231,7 +232,7 @@ export default function CreateAccount({ location }) {
 					</Form.Group>
 					<Form.Group>
 						{feedback && <p>{feedback}</p>}
-						<Button className='px-5 mt-3' variant='primary' type='submit'>
+						<Button disabled={!isUserVerified || !isCodeVerified} className='px-5 mt-3' variant='primary' type='submit'>
 							Submit
 						</Button>
 					</Form.Group>

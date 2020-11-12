@@ -166,7 +166,7 @@ export default function ActivateCard(props) {
 							</InputGroup>
 						</Form.Group>
 					) : null}
-					<Form.Group>
+					<Form.Group className={!isUserVerified || !isCodeVerified ? 'disabled' : null} >
 						<Row>
 							<Col sm={8}>
 								<Form.Label>Last 4 of card</Form.Label>
@@ -188,7 +188,7 @@ export default function ActivateCard(props) {
 					</Form.Group>
 					<Form.Group>
 						{feedback && <p>{feedback}</p>}
-						<Button className='px-5 mt-3' variant='primary' type='submit'>
+						<Button disabled={!isUserVerified || !isCodeVerified} className='px-5 mt-3' variant='primary' type='submit'>
 							Submit
 						</Button>
 					</Form.Group>
