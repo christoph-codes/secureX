@@ -44,16 +44,16 @@ export default function CreateAccount({ location }) {
 					(user) => user.fields.lastssn === ssn,
 				);
 				// console.log(dbuser)
-				verifiedUser = dbuser.fields;
+				verifiedUser = dbuser;
 				verificationStatus = true;
 
 				if (verifiedUser) {
-					if (verifiedUser.phone && verificationStatus) {
+					if (verifiedUser.fields.phone && verificationStatus) {
 						// Send Twilio the phone number to verify user
 						local
 							.post(`/ssnverify`, {
-								phone_number: `${verifiedUser.phone}`,
-								verification_method: `${verifiedUser.preferred_verification}`,
+								phone_number: `${verifiedUser.fields.phone}`,
+								verification_method: `${verifiedUser.fields.preferred_verification}`,
 							})
 							.then((response) => {
 								setUser(verifiedUser);
@@ -79,7 +79,7 @@ export default function CreateAccount({ location }) {
 		// Send Twilio the phone number to verify user
 		local
 			.post(`/verifycode`, {
-				phone_number: `${user.phone}`,
+				phone_number: `${user.fields.phone}`,
 				enteredCode: `${verifyCode}`,
 			})
 			.then((response) => {
@@ -96,8 +96,21 @@ export default function CreateAccount({ location }) {
         if(isUserVerified && isCodeVerified) {
             if(username && password) {
                 if(password === confirmPassword) {
+                    const updates = {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        id: user.id,
+                        username: username,
+                        password: password,
+                    }
                     console.log('...Creating the account');
                     history.push('/transactional');
+                    local.post('/writedb', updates)
+                        .then(function (response) {
+                        // handle success
+                        console.log(response);
+                        })
                 } else {
                     setFeedback('Your passwords do not match');
                 }
@@ -118,7 +131,7 @@ export default function CreateAccount({ location }) {
 		<div className='CreateAccount page'>
 			<FormContainer>
 				{isCodeVerified ? (
-					<h1>Thanks {user.firstname}, for activating your card!</h1>
+					<h1>Thanks {user.fields.firstname}, for activating your card!</h1>
 				) : (
 					<h1>Thank you for activating your card!</h1>
 				)}

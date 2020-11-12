@@ -1,0 +1,17 @@
+@import '../../assets/styles/variables';
+.TransactionalMock {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	background: $dark;
+	height: 100vh;
+	.container {
+        text-align: center;
+		h1 {
+			text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: white;
+		}
+	}
+}
