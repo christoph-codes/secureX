@@ -210,7 +210,8 @@ export default function CreateAccount({ location }) {
 						<Form.Control
 							onChange={(e) => setUsername(e.target.value.replace(/[^\w\s]/gi, '').toLowerCase())}
                             value={username}
-                            maxLength={16}
+							maxLength={16}
+							disabled={!isUserVerified || !isCodeVerified}
 						/>
 					</Form.Group>
 					<Form.Group className={!isUserVerified || !isCodeVerified ? 'disabled' : null}>
@@ -219,7 +220,8 @@ export default function CreateAccount({ location }) {
 							onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             minLength={8}
-                            type="password"
+							type="password"
+							disabled={!isUserVerified || !isCodeVerified}
 						/>
 					</Form.Group>
 					<Form.Group className={!isUserVerified || !isCodeVerified ? 'disabled' : null}>
@@ -227,7 +229,8 @@ export default function CreateAccount({ location }) {
 						<Form.Control
 							onChange={(e) => setConfirmPassword(e.target.value)}
                             value={confirmPassword}
-                            type="password"
+							type="password"
+							disabled={!isUserVerified || !isCodeVerified}
 						/>
 					</Form.Group>
 					<Form.Group>
